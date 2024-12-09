@@ -9,7 +9,7 @@ public class generator : MonoBehaviour
 
     void Start()
     {
-        currentPosition = transform.position - new Vector3(0,0,-7);
+        currentPosition = transform.position - new Vector3(0,0,-10);
         generate(6); // стартавая генерация
     }
 
@@ -21,9 +21,10 @@ public class generator : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision){ // для создания последующих препятствий
+    void OnCollisionEnter(Collision collision){ 
+        Debug.Log("косание");
         if(collision.collider.tag != "barer"){ 
-        currentPosition = new Vector3(0,0,14); // костыль (задаю корды спавна кждого следуюшего префаба, 2 длинны + половина) 
+        currentPosition = new Vector3(0,0,14); 
         generate(1);
         }
     }

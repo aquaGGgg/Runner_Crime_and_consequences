@@ -21,10 +21,10 @@ public class mov : MonoBehaviour
             Destroy(gameObject); 
         }
 
-        if(isbufspeed ==true) bustMovSpead();
+        if(isbufspeed ==true) bustMovspead();
     }
 
-    private void bustMovSpead(){ // ускорение после каждого пройденого префаба
+    private void bustMovspead(){ // ускорение после каждого пройденого префаба
         speed +=0.1f;
         isbufspeed =false;
     }
