@@ -5,7 +5,6 @@ public class mov : MonoBehaviour
 
    public Transform target; 
    public static float speed = 5f;
-   bool isbufspeed =false;
 
     void Update()
     {
@@ -17,16 +16,14 @@ public class mov : MonoBehaviour
         if (Vector3.Distance(transform.position, target.position) < 0.1f)
         {
             transform.position = target.position; 
-            isbufspeed = true;
+            bustMovspead();
             Destroy(gameObject); 
         }
 
-        if(isbufspeed ==true) bustMovspead();
     }
 
     private void bustMovspead(){ // ускорение после каждого пройденого префаба
         speed +=0.1f;
-        isbufspeed =false;
     }
     
 }

@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - 'ground '
   - barer
+  - ground
   layers:
   - Default
   - TransparentFX
