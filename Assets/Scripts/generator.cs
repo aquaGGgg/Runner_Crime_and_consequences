@@ -21,10 +21,9 @@ public class generator : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision){ 
-        Debug.Log("косание");
-        if(collision.collider.tag != "barer"){ 
-        currentPosition = new Vector3(0,0,14); 
+    void OnCollisionEnter(Collision collision){ // для создания последующих препятствий
+        if(collision.collider.tag == "ground"){ 
+        currentPosition = new Vector3(0,0,16); // костыль (задаю корды спавна кждого следуюшего префаба, 4 длинны ) 
         generate(1);
         }
     }
