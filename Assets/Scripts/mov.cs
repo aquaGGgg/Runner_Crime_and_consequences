@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class mov : MonoBehaviour
+public class Mov : MonoBehaviour
 {
 
    public Transform target; 
+
    public static float speed = 5f;
 
     void Update()

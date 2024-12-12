@@ -1,37 +1,49 @@
 using UnityEngine;
 
-public class dogeComponent : MonoBehaviour
+public class DogeComponent : MonoBehaviour
 {   
     public float jumpForce = 1f;
 
-    private Rigidbody rb;
-    private bool isGrounded;
-    public int poss;
+    private Rigidbody _rb;
+    private Animator _anime;
+    private BoxCollider _boxCollider;  // Коллайдер персонажа
+    private bool _isGrounded;
+    private int _poss;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _boxCollider = GetComponent<BoxCollider>();
+        _rb = GetComponent<Rigidbody>();
+        _anime = GetComponent<Animator>();
     }
 
 
     void Update()
-    {
+    { 
+        if(_isGrounded && _anime.GetBool("isJumping") == true){
+            _anime.SetBool("isJumping", false);
+        }
         
         if(Input.GetKeyDown(KeyCode.D)){
-            if(poss<1) poss++;
-            transform.position = new Vector3(poss,transform.position.y, transform.position.z);
+            if(_poss<1) _poss++;
+            transform.position = new Vector3(_poss,transform.position.y, transform.position.z);
         }        
         if(Input.GetKeyDown(KeyCode.A)){
-            if(poss>-1) poss--;
-            transform.position = new Vector3(poss,transform.position.y, transform.position.z);
+            if(_poss>-1) _poss--;
+            transform.position = new Vector3(_poss,transform.position.y, transform.position.z);
         }
 
-        if(Input.GetButton("Jump") && isGrounded)
-            rb.AddForce(new Vector3(0f, jumpForce * Time.deltaTime,0f), ForceMode.Impulse);
+        if((Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W))&& _isGrounded){ //@jump
+            _anime.SetBool("isJumping", true);
+            _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, CalculateJumpVelocity(), _rb.linearVelocity.z);
+           }
 
-        if(Input.GetKeyDown(KeyCode.S) && isGrounded){
-        transform.localScale = transform.localScale * 0.5f;
-        Invoke("ToBigger", 0.5f);
+
+        if(Input.GetKeyDown(KeyCode.S) && _isGrounded){ // @slide
+        _boxCollider.size = _boxCollider.size * 0.5f;
+        _boxCollider.center = _boxCollider.center * 0.5f;
+        _anime.SetBool("isSliding", true);
+        Invoke("NonSliding", 0.5f);
         }
            
     }
@@ -39,16 +51,20 @@ public class dogeComponent : MonoBehaviour
 
     void OnCollisionEnter(Collision collision){
         if(collision.gameObject.CompareTag("ground"))
-            isGrounded = true;
+            _isGrounded = true;
 
         if(collision.gameObject.CompareTag("barer"))
         Dead();
     }
     void OnCollisionExit(Collision collision){
         if(collision.gameObject.CompareTag("ground"))
-            isGrounded = false;
+            _isGrounded = false;
     }
 
+    float CalculateJumpVelocity()
+    {
+        return Mathf.Sqrt(2 * Mathf.Abs(Physics.gravity.y) * jumpForce);
+    }
 
 
     void Dead(){ // методж должен вызывать экран\меню смерти, паузу лучше прописать в Ui менеджере 
@@ -56,8 +72,10 @@ public class dogeComponent : MonoBehaviour
     }
 
 
-    void ToBigger(){
-        transform.localScale = transform.localScale * 2f;
+    void NonSliding(){
+        _boxCollider.size = _boxCollider.size * 2f;
+        _boxCollider.center = _boxCollider.center * 2f;
+        _anime.SetBool("isSliding", false);
     }
     // преследование в другом скрипте
 }
