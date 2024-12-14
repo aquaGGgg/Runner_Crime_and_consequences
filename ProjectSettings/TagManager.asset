@@ -7,6 +7,8 @@ TagManager:
   - barer
   - ground
   - coin
+  - LeftWall
+  - RightWall
   layers:
   - Default
   - TransparentFX
