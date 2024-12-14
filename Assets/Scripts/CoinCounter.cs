@@ -9,7 +9,7 @@ public  class CoinCounter : MonoBehaviour
 
     private int _counter = 0;
 
-    void OnTriggerExit(Collider other){
+    void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("coin")){
             _counter++;
             Destroy(other.gameObject);
