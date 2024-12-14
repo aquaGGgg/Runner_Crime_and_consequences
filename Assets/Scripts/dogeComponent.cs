@@ -53,8 +53,11 @@ public class DogeComponent : MonoBehaviour
         if(collision.gameObject.CompareTag("ground"))
             _isGrounded = true;
 
-        if(collision.gameObject.CompareTag("barer"))
-        Dead();
+        if (collision.gameObject.CompareTag("barer"))
+        {
+            Debug.Log("удар");
+            Dead();
+        }
     }
     void OnCollisionExit(Collision collision){
         if(collision.gameObject.CompareTag("ground"))
@@ -68,6 +71,7 @@ public class DogeComponent : MonoBehaviour
 
 
     void Dead(){ // методж должен вызывать экран\меню смерти, паузу лучше прописать в Ui менеджере 
+        Time.timeScale = 0;
         Destroy(gameObject);
     }
 
