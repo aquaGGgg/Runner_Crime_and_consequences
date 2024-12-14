@@ -6,6 +6,7 @@ TagManager:
   tags:
   - barer
   - ground
+  - coin
   layers:
   - Default
   - TransparentFX
