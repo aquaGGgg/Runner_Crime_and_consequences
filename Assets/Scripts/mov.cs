@@ -5,7 +5,7 @@ public class Mov : MonoBehaviour
 
    public Transform target; 
 
-   public static float speed = 5f;
+   public static float speed = 3.5f;
 
     void Update()
     {
