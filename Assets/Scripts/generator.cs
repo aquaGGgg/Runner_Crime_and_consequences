@@ -5,26 +5,22 @@ public class Generator : MonoBehaviour
     // при переходе на большие префабы цифры нужно заменить
 
     public GameObject[] paterns;
-    private Vector3 _currentPosition; // позиция спавна
+    private Vector3 _currentPosition = new Vector3(0,0,25f); // позиция спавна
 
     void Start()
     {
-        _currentPosition = transform.position - new Vector3(0,0,-10);
-        generate(6); // стартавая генерация
+        generate(); // стартавая генерация
     }
 
-    private void generate(int count){
-        for(int i =0; i<count;i++){
+    private void generate(){
         int number   =  Random.Range(0, 4);  // выбор префаба
         Instantiate(paterns[number],_currentPosition, Quaternion.identity);
-        _currentPosition += Vector3.forward * 4;  // кмножение на длинну префаба
-        }
+        
     }
 
-    void OnCollisionEnter(Collision collision){ // для создания последующих препятствий
-        if(collision.collider.tag == "ground"){ 
-        _currentPosition = new Vector3(0,0,16); // костыль (задаю корды спавна кждого следуюшего префаба, 4 длинны ) 
-        generate(1);
+    void OnTriggerEnter(Collider collision){ // для создания последующих препятствий
+        if(collision.GetComponent<Collider>().tag == "StartPatern"){ 
+        generate();
         }
     }
 }
