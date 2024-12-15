@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 5795093140974872804}
   - component: {fileID: 2816361210063815309}
   - component: {fileID: 2843322661057676802}
+  - component: {fileID: 1755502486210902631}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: 'ground '
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: bffcd691623b74342b9f006728c22f30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -152,3 +153,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 2, z: 1}
   m_Center: {x: -0.55, y: 1, z: 0}
+--- !u!114 &1755502486210902631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7923269528669692240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feeed333e981b2a4ebf4404581833f47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,31 +1,26 @@
 using UnityEngine;
 
-public class generator : MonoBehaviour
+public class Generator : MonoBehaviour
 {
     // при переходе на большие префабы цифры нужно заменить
 
     public GameObject[] paterns;
-    public Vector3 currentPosition; // позиция спавна
+    private Vector3 _currentPosition = new Vector3(0,0,25f); // позиция спавна
 
     void Start()
     {
-        currentPosition = transform.position - new Vector3(0,0,-10);
-        generate(6); // стартавая генерация
+        generate(); // стартавая генерация
     }
 
-    private void generate(int count){
-        for(int i =0; i<count;i++){
+    private void generate(){
         int number   =  Random.Range(0, 4);  // выбор префаба
-        Instantiate(paterns[number],currentPosition, Quaternion.identity);
-        currentPosition += Vector3.forward * 4;  // кмножение на длинну префаба
-        }
+        Instantiate(paterns[number],_currentPosition, Quaternion.identity);
+        
     }
 
-    void OnCollisionEnter(Collision collision){ 
-        Debug.Log("косание");
-        if(collision.collider.tag != "barer"){ 
-        currentPosition = new Vector3(0,0,14); 
-        generate(1);
+    void OnTriggerEnter(Collider collision){ // для создания последующих препятствий
+        if(collision.GetComponent<Collider>().tag == "StartPatern"){ 
+        generate();
         }
     }
 }
