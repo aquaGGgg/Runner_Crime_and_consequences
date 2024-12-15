@@ -265,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9091905532282713240, guid: cc1ac21b8bc84304aae039241780fd89, type: 3}
       propertyPath: jumpForce
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9157308824083541092, guid: cc1ac21b8bc84304aae039241780fd89, type: 3}
       propertyPath: m_Constraints
