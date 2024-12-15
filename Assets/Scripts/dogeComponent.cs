@@ -7,37 +7,45 @@ public class DogeComponent : MonoBehaviour
     private Rigidbody _rb;
     private Animator _anime;
     private BoxCollider _boxCollider;  // Коллайдер персонажа
-    public bool _isGrounded;
+    private bool _isGrounded;
     private int _poss;
+
 
     void Start()
     {
         _boxCollider = GetComponent<BoxCollider>();
         _rb = GetComponent<Rigidbody>();
         _anime = GetComponent<Animator>();
+
+        Trigger_Collision_Controller.OnDeath += Dead;
     }
 
 
     void Update()
     { 
+
+
         if(_isGrounded && _anime.GetBool("isJumping") == true){
             _anime.SetBool("isJumping", false);
         }
         
         if(Input.GetKeyDown(KeyCode.D) && !Physics.Raycast(transform.position, Vector3.right, 1f)){
-            if(_poss<1) _poss++;
+            _anime.SetBool("Left_Dodge", true);
+            Invoke("DodgeToFalse", 0.1f);
+            _poss++;
             transform.position = new Vector3(_poss,transform.position.y, transform.position.z);
+
         }else if(Physics.Raycast(transform.position, Vector3.right, 1f)){
             //анимация удара правым боком + спавн приследователя
-            Debug.Log("Справа");
             }
 
         if(Input.GetKeyDown(KeyCode.A) && !Physics.Raycast(transform.position, Vector3.left, 1f)){
-            if(_poss>-1) _poss--;
+            _anime.SetBool("Left_Dodge", true);
+            Invoke("DodgeToFalse", 0.1f);
+            _poss--;
             transform.position = new Vector3(_poss,transform.position.y, transform.position.z);
         }else if(Physics.Raycast(transform.position, Vector3.left, 1f)){
             //анимация удара левым боком + спавн приследователя
-             Debug.Log("Слева");
         }
 
         if((Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W)) && _isGrounded){ //@jump
@@ -54,14 +62,20 @@ public class DogeComponent : MonoBehaviour
         }
     }
 
+    void NonSliding(){
+        _boxCollider.size = _boxCollider.size * 2f;
+        _boxCollider.center = _boxCollider.center * 2f;
+        _anime.SetBool("isSliding", false);
+    }
+    
+    void DodgeToFalse(){
+        _anime.SetBool("Left_Dodge", false);
+    }
+
 
     void OnCollisionEnter(Collision collision){
-        if(collision.gameObject.CompareTag("ground"))
+       if(collision.gameObject.CompareTag("ground"))
             _isGrounded = true;
-
-        if (collision.gameObject.CompareTag("barer"))
-            Dead();
-
     }
 
     void OnCollisionExit(Collision collision){
@@ -69,31 +83,20 @@ public class DogeComponent : MonoBehaviour
             _isGrounded = false;
     }
 
-    void OnTriggerEnter(Collider other){
-        if (other.gameObject.CompareTag("barer"))
-            Dead();
-    }
-
-    float CalculateJumpVelocity()
+     float CalculateJumpVelocity()
     {
         return Mathf.Sqrt(2 * Mathf.Abs(Physics.gravity.y) * jumpForce);
     }
 
-
-    void Dead(){ // методж должен вызывать экран\меню смерти, паузу лучше прописать в Ui менеджере 
-        Time.timeScale = 0;
-        Destroy(gameObject);
-    }
-
-
-    void NonSliding(){
-        _boxCollider.size = _boxCollider.size * 2f;
-        _boxCollider.center = _boxCollider.center * 2f;
-        _anime.SetBool("isSliding", false);
+    void Dead(){ 
+        _anime.SetBool("isDead", true);
+        Time.timeScale = 0; // ето заменить
     }
 
     //функция - спавн приследователя
 
+    
 
     // преследование в другом скрипте
+
 }

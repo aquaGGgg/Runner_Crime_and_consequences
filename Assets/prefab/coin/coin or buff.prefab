@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7062337222085846082}
+  - component: {fileID: -2933560647264277683}
   m_Layer: 0
   m_Name: coin or buff
   m_TagString: Untagged
@@ -31,3 +32,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2933560647264277683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584450674401018101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f9f914b9efce549872e146fdb64605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffes:
+  - {fileID: 4851924731484750978, guid: 89f27175b25b57f4bbd96d53b4496be8, type: 3}
+  - {fileID: 4851924731484750978, guid: 89f27175b25b57f4bbd96d53b4496be8, type: 3}
+  - {fileID: 4851924731484750978, guid: 89f27175b25b57f4bbd96d53b4496be8, type: 3}
+  - {fileID: 4851924731484750978, guid: 89f27175b25b57f4bbd96d53b4496be8, type: 3}
+  - {fileID: 4851924731484750978, guid: 89f27175b25b57f4bbd96d53b4496be8, type: 3}
+  - {fileID: 4851924731484750978, guid: 89f27175b25b57f4bbd96d53b4496be8, type: 3}
+  - {fileID: 4851924731484750978, guid: 89f27175b25b57f4bbd96d53b4496be8, type: 3}
+  - {fileID: 5016688639544534227, guid: 701120ba7f13b2c44a4f0fe93a622d64, type: 3}
+  - {fileID: 5016688639544534227, guid: 701120ba7f13b2c44a4f0fe93a622d64, type: 3}
+  - {fileID: 1024517623286975154, guid: b2a694d6869ddca4ca06309d7f797e2d, type: 3}
