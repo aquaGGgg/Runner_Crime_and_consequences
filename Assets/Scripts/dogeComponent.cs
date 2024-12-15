@@ -6,13 +6,13 @@ public class DogeComponent : MonoBehaviour
 
     private Rigidbody _rb;
     private Animator _anime;
-    private BoxCollider _boxCollider;  // Коллайдер персонажа
-    private bool _isGrounded;
+    private CapsuleCollider _boxCollider;  // Коллайдер персонажа
+    public bool _isGrounded;
     private int _poss;
 
     void Start()
     {
-        _boxCollider = GetComponent<BoxCollider>();
+        _boxCollider = GetComponent<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
         _anime = GetComponent<Animator>();
     }
@@ -27,12 +27,18 @@ public class DogeComponent : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.D) && !Physics.Raycast(transform.position, Vector3.right, 1f)){
             if(_poss<1) _poss++;
             transform.position = new Vector3(_poss,transform.position.y, transform.position.z);
-        } //else анимация удара правым боком + спавн приследователя
+        }else if(Physics.Raycast(transform.position, Vector3.right, 1f)){
+            //анимация удара правым боком + спавн приследователя
+            Debug.Log("Справа");
+            }
 
         if(Input.GetKeyDown(KeyCode.A) && !Physics.Raycast(transform.position, Vector3.left, 1f)){
             if(_poss>-1) _poss--;
             transform.position = new Vector3(_poss,transform.position.y, transform.position.z);
-        } //else анимация удара левым боком + спавн приследователя
+        }else if(Physics.Raycast(transform.position, Vector3.left, 1f)){
+            //анимация удара левым боком + спавн приследователя
+             Debug.Log("Слева");
+        }
 
         if((Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W)) && _isGrounded){ //@jump
             _anime.SetBool("isJumping", true);
@@ -41,7 +47,7 @@ public class DogeComponent : MonoBehaviour
 
 
         if(Input.GetKeyDown(KeyCode.S) && _isGrounded){ // @slide
-        _boxCollider.size = _boxCollider.size * 0.5f;
+        _boxCollider.height = _boxCollider.height * 0.5f;
         _boxCollider.center = _boxCollider.center * 0.5f;
         _anime.SetBool("isSliding", true);
         Invoke("NonSliding", 0.5f);
@@ -57,9 +63,15 @@ public class DogeComponent : MonoBehaviour
             Dead();
 
     }
+
     void OnCollisionExit(Collision collision){
         if(collision.gameObject.CompareTag("ground"))
             _isGrounded = false;
+    }
+
+    void OnTriggerEnter(Collider other){
+        if (other.gameObject.CompareTag("barer"))
+            Dead();
     }
 
     float CalculateJumpVelocity()
@@ -75,7 +87,7 @@ public class DogeComponent : MonoBehaviour
 
 
     void NonSliding(){
-        _boxCollider.size = _boxCollider.size * 2f;
+        _boxCollider.height = _boxCollider.height * 2f;
         _boxCollider.center = _boxCollider.center * 2f;
         _anime.SetBool("isSliding", false);
     }
