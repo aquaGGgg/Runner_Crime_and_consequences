@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1755502486210902631, guid: 71b59febd53bf1046955d018d8f2bd29, type: 3}
+      propertyPath: _scrollY
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2816361210063815309, guid: 71b59febd53bf1046955d018d8f2bd29, type: 3}
       propertyPath: m_Size.y
       value: 2
@@ -194,7 +198,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7923269528669692240, guid: 71b59febd53bf1046955d018d8f2bd29, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 875635283}
   m_SourcePrefab: {fileID: 100100000, guid: 71b59febd53bf1046955d018d8f2bd29, type: 3}
 --- !u!1001 &45395652
 PrefabInstance:
@@ -255,6 +262,10 @@ PrefabInstance:
     - target: {fileID: 5592479869839359534, guid: cc1ac21b8bc84304aae039241780fd89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091905532282713240, guid: cc1ac21b8bc84304aae039241780fd89, type: 3}
+      propertyPath: jumpForce
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 9157308824083541092, guid: cc1ac21b8bc84304aae039241780fd89, type: 3}
       propertyPath: m_Constraints
@@ -402,6 +413,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+--- !u!1 &875635275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7923269528669692240, guid: 71b59febd53bf1046955d018d8f2bd29, type: 3}
+  m_PrefabInstance: {fileID: 29549126}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &875635283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875635275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063976ed7c211b54ca2f328b77cd3865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &1082064273 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8510375340940659020, guid: 95201d2370a6e734ba5cfa4f84a23ab6, type: 3}

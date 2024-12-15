@@ -3,16 +3,16 @@ using UnityEngine;
 public class Mov : MonoBehaviour
 {
 
-   public Transform target; 
-
-   public static float speed = 3.5f;
+   public Transform target;
+   [SerializeField]
+   private static float _speed = 3f;
 
     void Update()
     {
         if (target == null) return;
 
         Vector3 direction = (target.position - transform.position).normalized; 
-        transform.position += direction * speed * Time.deltaTime; 
+        transform.position += direction * _speed * Time.deltaTime; 
 
         if (Vector3.Distance(transform.position, target.position) < 0.1f)
         {
@@ -24,7 +24,7 @@ public class Mov : MonoBehaviour
     }
 
     private void bustMovspead(){ // ускорение после каждого пройденого префаба
-        speed +=0.1f;
+        _speed += 0.1f;
     }
     
 }
