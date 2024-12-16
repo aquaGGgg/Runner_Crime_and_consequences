@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DogeComponent : MonoBehaviour
 {   
-    public float jumpForce = 1f;
+    private float _jumpForce = 1f;
 
     private Rigidbody _rb;
     private Animator _anime;
@@ -10,6 +10,7 @@ public class DogeComponent : MonoBehaviour
     private bool _isGrounded;
     private int _poss;
 
+    /*----------------------------------------------------------------------------*/
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class DogeComponent : MonoBehaviour
         Trigger_Collision_Controller.OnDeath += Dead;
     }
 
+    /*----------------------------------------------------------------------------*/
 
     void Update()
     { 
@@ -62,41 +64,52 @@ public class DogeComponent : MonoBehaviour
         }
     }
 
+    /*----------------------------------------------------------------------------*/
+
     void NonSliding(){
         _boxCollider.size = _boxCollider.size * 2f;
         _boxCollider.center = _boxCollider.center * 2f;
         _anime.SetBool("isSliding", false);
     }
-    
+
+    /*----------------------------------------------------------------------------*/
     void DodgeToFalse(){
         _anime.SetBool("Left_Dodge", false);
     }
 
+    /*----------------------------------------------------------------------------*/
 
     void OnCollisionEnter(Collision collision){
        if(collision.gameObject.CompareTag("ground"))
             _isGrounded = true;
     }
 
+    /*----------------------------------------------------------------------------*/
+
     void OnCollisionExit(Collision collision){
         if(collision.gameObject.CompareTag("ground"))
             _isGrounded = false;
     }
 
-     float CalculateJumpVelocity()
+    /*----------------------------------------------------------------------------*/
+
+    float CalculateJumpVelocity()
     {
-        return Mathf.Sqrt(2 * Mathf.Abs(Physics.gravity.y) * jumpForce);
+        return Mathf.Sqrt(2 * Mathf.Abs(Physics.gravity.y) * _jumpForce);
     }
+
+    /*----------------------------------------------------------------------------*/
 
     void Dead(){ 
         _anime.SetBool("isDead", true);
         Time.timeScale = 0; // ето заменить
     }
 
+    /*----------------------------------------------------------------------------*/
+
     //функция - спавн приследователя
 
-    
+    /*----------------------------------------------------------------------------*/
 
     // преследование в другом скрипте
-
 }
