@@ -8,6 +8,8 @@ TagManager:
   - ground
   - coin
   - StartPatern
+  - Shild
+  - Magnet
   layers:
   - Default
   - TransparentFX
