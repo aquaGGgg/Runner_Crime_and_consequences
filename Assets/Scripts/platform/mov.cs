@@ -23,8 +23,8 @@ public class Mov : MonoBehaviour
 
     }
 
-    private void bustMovspead(){ // ускорение после каждого пройденого префаба
-        _speed += 0.1f;
+    private void bustMovspead(){ // ускорение после каждого пройденого препятствия
+        _speed += 0.01f;
     }
     
 }
