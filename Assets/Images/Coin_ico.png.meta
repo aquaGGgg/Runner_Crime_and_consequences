@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8a4bb2a4ef532874fab3a7db238696c4
+guid: caa7d60701c1dff44915920fa777daa9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Medal_0
+      name: Coin_ico_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 5
-        width: 512
-        height: 507
+        y: 0
+        width: 507
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b852545c1e5f6043937e57b4fffcd79
-      internalID: 218516175
+      spriteID: 6d72b3998ff831f428d1a1763c262dc4
+      internalID: -571141185
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2c9ea83d4c9ce4b4caed121074e4cd6a
+    spriteID: 291a666418e699e4c8b04506f488a219
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Medal_0: 218516175
+      Coin_ico_0: -571141185
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
