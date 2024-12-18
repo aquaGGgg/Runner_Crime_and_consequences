@@ -5,16 +5,18 @@ using TMPro;
 
 public  class CoinCounter : MonoBehaviour
 {
-    public TextMeshProUGUI  text; 
-
+    public TextMeshProUGUI  text;  
     private int _counter = 0;
 
-    void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("coin")){
+    void Start(){
+        Trigger_Collision_Controller.OnTakeCoin +=Coin;
+    }
+
+    
+
+    void Coin(){
             _counter++;
-            Destroy(other.gameObject);
             if(text != null)
             text.text= "" + _counter;
-        }
     }
 }

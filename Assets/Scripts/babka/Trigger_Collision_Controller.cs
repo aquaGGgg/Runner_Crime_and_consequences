@@ -5,7 +5,8 @@ using System;
 public class Trigger_Collision_Controller : MonoBehaviour
 {
     public static event Action OnDeath;
-    public static event Action OnMagneting;  
+    public static event Action OnMagneting; 
+    public static event Action OnTakeCoin;   
     private bool _isSheald;
 
 
@@ -29,6 +30,12 @@ public class Trigger_Collision_Controller : MonoBehaviour
             OnMagneting?.Invoke(); 
             Destroy(other.gameObject);
         }
+
+        if(other.gameObject.CompareTag("coin")){
+            OnTakeCoin?.Invoke();
+            Destroy(other.gameObject);
+        }
+    
     }
 
 }

@@ -9,15 +9,15 @@ public class RandomCoinTransform : MonoBehaviour
     {
         int number   =  Random.Range(0, 100);
 
-        if (number <= 90)
+        if (number <= 96)
         {
             spawnedBuff = Instantiate(buffes[0], transform.position, Quaternion.identity);
         }
-        else if (number > 90 && number <= 95)
+        else if (number > 96 && number <= 98)
         {
             spawnedBuff = Instantiate(buffes[1], transform.position, Quaternion.identity);
         }
-        else if (number > 95)
+        else if (number > 98)
         {
             spawnedBuff = Instantiate(buffes[2], transform.position, Quaternion.identity);
         }

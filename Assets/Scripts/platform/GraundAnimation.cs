@@ -14,11 +14,6 @@ public class GraundAnimation : MonoBehaviour
         float OrffsexY = Time.time * _scrollY;
         float OrffsexX = Time.time * _scrollX;
         GetComponent<Renderer>().material.mainTextureOffset = new Vector2(OrffsexX, OrffsexY);
-
-        if(Math.Round(Time.time, 1)%10 ==0){
-            //_scrollY*=1.1f;
-            //_scrollX+=100f;
-        }
     }
 
 }
