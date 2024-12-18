@@ -9,8 +9,7 @@ public class Generator : MonoBehaviour
 
     void Start()
     {
-        generate(); // стартавая генерация
-        DeadMenu.OnStart +=OnRestart;
+        DeadMenu.OnStart +=OnStart;
     }
 
     private void generate(){
@@ -25,10 +24,9 @@ public class Generator : MonoBehaviour
         }
     }
 
-    void OnRestart(){
-        DeadMenu.OnStart -=OnRestart;
+    void OnStart(){
         DestroyPrefabs();
-        Start();
+        generate();
     }
 
         void DestroyPrefabs(){

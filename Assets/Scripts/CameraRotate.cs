@@ -16,12 +16,18 @@ public class CameraRotate : MonoBehaviour
         startPosition = transform.position;
         startRotation = transform.rotation;
 
-        DeadMenu.OnStart += OnStart;
-        StartCoroutine(SmoothTransitionCoroutine());
-    }
+        MainMenu.OnPlay += OnStart;
+        DeadMenu.GoToMenu += OnEnd;
+    }  
+
 
     void OnStart(){
         StartCoroutine(SmoothTransitionCoroutine());
+    }
+
+    void OnEnd(){
+        transform.position = new Vector3(0,1.43f,-7.02f);
+        transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
   IEnumerator SmoothTransitionCoroutine()
