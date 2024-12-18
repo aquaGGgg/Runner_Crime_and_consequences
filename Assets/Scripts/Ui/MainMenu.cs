@@ -30,11 +30,11 @@ public class MainMenu : MonoBehaviour
 
         if (audioSource.activeSelf == false){
            audioSource.SetActive(true);
-           sound.text = "выключить звук";
+           sound.text = "Звук выкл.";
         } 
         else{
            audioSource.SetActive(false);
-            sound.text = "включить звук";
+            sound.text = "Звук вкл.";
            }
     }
 
