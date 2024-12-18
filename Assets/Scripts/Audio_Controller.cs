@@ -13,6 +13,11 @@ public class Audio_Controller : MonoBehaviour
 
         Trigger_Collision_Controller.OnDeath += Dead;
         Trigger_Collision_Controller.OnTakeCoin +=Coin;
+        DeadMenu.OnStart +=OnStart;
+    }
+
+    void OnStart(){
+        mainMusic.Play();
     }
 
     void Dead(){

@@ -19,6 +19,7 @@ public class DogeComponent : MonoBehaviour
         _anime = GetComponent<Animator>();
 
         Trigger_Collision_Controller.OnDeath += Dead;
+        DeadMenu.OnStart +=OnStart;
     }
 
     /*----------------------------------------------------------------------------*/
@@ -37,17 +38,13 @@ public class DogeComponent : MonoBehaviour
             _poss++;
             transform.position = new Vector3(_poss,transform.position.y, transform.position.z);
 
-        }else if(Physics.Raycast(transform.position, Vector3.right, 1f)){
-            //анимация удара правым боком + спавн приследователя
-            }
+        }
 
         if(Input.GetKeyDown(KeyCode.A) && !Physics.Raycast(transform.position, Vector3.left, 1f)){
             _anime.SetBool("Left_Dodge", true);
             Invoke("DodgeToFalse", 0.1f);
             _poss--;
             transform.position = new Vector3(_poss,transform.position.y, transform.position.z);
-        }else if(Physics.Raycast(transform.position, Vector3.left, 1f)){
-            //анимация удара левым боком + спавн приследователя
         }
 
         if((Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W)) && _isGrounded){ //@jump
@@ -102,14 +99,19 @@ public class DogeComponent : MonoBehaviour
 
     void Dead(){ 
         _anime.SetBool("isDead", true);
-        Time.timeScale = 0; // ето заменить
+        Time.timeScale = 0;
     }
 
     /*----------------------------------------------------------------------------*/
 
     //функция - спавн приследователя
 
+    
     /*----------------------------------------------------------------------------*/
+    void OnStart(){
+        _poss = 0;
+        _anime.SetBool("isDead", false);
+        transform.position = new Vector3(0,-0.4f,-3.58f);
+    }
 
-    // преследование в другом скрипте
 }

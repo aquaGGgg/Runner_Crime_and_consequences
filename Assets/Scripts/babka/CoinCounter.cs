@@ -10,13 +10,17 @@ public  class CoinCounter : MonoBehaviour
 
     void Start(){
         Trigger_Collision_Controller.OnTakeCoin +=Coin;
+        DeadMenu.OnStart +=OnRestart;
     }
 
-    
-
+    void OnRestart(){      
+        _counter=0;
+    }
     void Coin(){
             _counter++;
             if(text != null)
             text.text= "" + _counter;
     }
+
+
 }

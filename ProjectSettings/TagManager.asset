@@ -10,6 +10,7 @@ TagManager:
   - StartPatern
   - Shild
   - Magnet
+  - patern
   layers:
   - Default
   - TransparentFX

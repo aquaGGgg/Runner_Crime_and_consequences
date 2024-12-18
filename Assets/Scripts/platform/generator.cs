@@ -10,6 +10,7 @@ public class Generator : MonoBehaviour
     void Start()
     {
         generate(); // стартавая генерация
+        DeadMenu.OnStart +=OnRestart;
     }
 
     private void generate(){
@@ -21,6 +22,21 @@ public class Generator : MonoBehaviour
     void OnTriggerEnter(Collider collision){ // для создания последующих препятствий
         if(collision.GetComponent<Collider>().tag == "StartPatern"){ 
         generate();
+        }
+    }
+
+    void OnRestart(){
+        DeadMenu.OnStart -=OnRestart;
+        DestroyPrefabs();
+        Start();
+    }
+
+        void DestroyPrefabs(){
+        GameObject[] clones = GameObject.FindGameObjectsWithTag("patern");
+        
+        foreach (GameObject clone in clones)
+        {
+            Destroy(clone);
         }
     }
 }
