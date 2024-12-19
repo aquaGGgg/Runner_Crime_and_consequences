@@ -9,16 +9,19 @@ public  class Counter : MonoBehaviour
 
     private float _counter;
     private float _mytime;
+    private bool _isGaiming = true;
 
     void Start(){
-
         DeadMenu.OnStart +=OnStart;
+        Trigger_Collision_Controller.OnDeath +=Stop;
     }
 
     void Update()
     {
+        if(_isGaiming){
         _mytime+=Time.deltaTime;
         _counter+=1 * Time.deltaTime* multiplication();
+        }
 
         if(text != null)
         text.text= "" + (int) _counter;
@@ -31,5 +34,10 @@ public  class Counter : MonoBehaviour
     void OnStart(){
         _counter = 0;
         _mytime = 0;
+        _isGaiming = true;
+    }
+
+    void Stop(){
+        _isGaiming = false;
     }
 }

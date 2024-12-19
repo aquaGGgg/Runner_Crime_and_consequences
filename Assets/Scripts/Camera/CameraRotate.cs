@@ -26,13 +26,13 @@ public class CameraRotate : MonoBehaviour
     }
 
     void OnEnd(){
-        transform.position = new Vector3(0,1.43f,-7.02f);
-        transform.rotation = Quaternion.Euler(0, 180, 0);
+        transform.position = startPosition;
+        transform.rotation = startRotation;
     }
 
   IEnumerator SmoothTransitionCoroutine()
     {
-        while (Vector3.Distance(transform.position, endPosition) > 0.01f || Quaternion.Angle(transform.rotation, endRotation) > 1f)
+        while (Vector3.Distance(transform.position, endPosition) > 0.2f || Quaternion.Angle(transform.rotation, endRotation) > 1f)
         {
             // Плавное перемещение камеры
             transform.position = Vector3.Lerp(transform.position, endPosition, transitionSpeed * Time.deltaTime);

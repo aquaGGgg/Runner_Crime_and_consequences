@@ -24,7 +24,7 @@ public class BabkaOnStart : MonoBehaviour
 
     IEnumerator SmoothTransitionCoroutine()
     {
-        float duration = 2f; // Длительность движения, например 2 секунды
+        float duration = 1f; // Длительность движения, например 2 секунды
         float elapsedTime = 0f;
         while (Vector3.Distance(transform.position, endPosition) > 0.01f)
         {

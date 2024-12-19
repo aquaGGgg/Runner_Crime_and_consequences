@@ -36,18 +36,18 @@ public class DogeComponent : MonoBehaviour
         }
         
         if(Input.GetKeyDown(KeyCode.D) && !Physics.Raycast(transform.position, Vector3.right, 1f) && _isDead == false){
-            _anime.SetBool("Left_Dodge", true);
+            //_anime.SetBool("Left_Dodge", true);
             Invoke("DodgeToFalse", 0.1f);
             _poss++;
-            transform.position = new Vector3(_poss,transform.position.y, transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(_poss,transform.position.y, transform.position.z), 1);
 
         }
 
         if(Input.GetKeyDown(KeyCode.A) && !Physics.Raycast(transform.position, Vector3.left, 1f) && _isDead == false){
-            _anime.SetBool("Left_Dodge", true);
+            //_anime.SetBool("Left_Dodge", true);
             Invoke("DodgeToFalse", 0.1f);
             _poss--;
-            transform.position = new Vector3(_poss,transform.position.y, transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(_poss,transform.position.y, transform.position.z), 1);
         }
 
         if((Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W)) && _isGrounded && _isDead == false){ //@jump
