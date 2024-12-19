@@ -7,6 +7,10 @@ public class Mov : MonoBehaviour
    [SerializeField]
    private static float _speed = 3f;
 
+   void Start(){
+        Trigger_Collision_Controller.OnDeath +=Stop;
+   }
+
     void Update()
     {
         if (target == null) return;
@@ -25,6 +29,10 @@ public class Mov : MonoBehaviour
 
     private void bustMovspead(){ // ускорение после каждого пройденого препятствия
         _speed += 0.01f;
+    }
+
+    void Stop(){
+        target =null;
     }
     
 }

@@ -26,8 +26,6 @@ public class MainMenu : MonoBehaviour
 
     public void Sound(){
 
-        Debug.Log(audioSource.activeSelf);
-
         if (audioSource.activeSelf == false){
            audioSource.SetActive(true);
            sound.text = "Звук выкл.";

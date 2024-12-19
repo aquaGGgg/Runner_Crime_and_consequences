@@ -11,9 +11,11 @@ public class GraundAnimation : MonoBehaviour
     private bool isStarting = false;
 
     void Start(){
-        MainMenu.OnPlay += OnStart;
+        DeadMenu.OnStart += OnStart;
         DeadMenu.GoToMenu += OnEnd;
+        Trigger_Collision_Controller.OnDeath +=OnEnd;
     }
+
 
     void FixedUpdate()
     {
@@ -24,7 +26,7 @@ public class GraundAnimation : MonoBehaviour
         }
     }
 
-     void OnStart(){
+    void OnStart(){
         isStarting = true;
      }
 

@@ -10,6 +10,9 @@ public class DogeComponent : MonoBehaviour
     private bool _isGrounded;
     private int _poss;
 
+    [SerializeField]
+    private bool _isDead;
+
     /*----------------------------------------------------------------------------*/
 
     void Start()
@@ -32,7 +35,7 @@ public class DogeComponent : MonoBehaviour
             _anime.SetBool("isJumping", false);
         }
         
-        if(Input.GetKeyDown(KeyCode.D) && !Physics.Raycast(transform.position, Vector3.right, 1f)){
+        if(Input.GetKeyDown(KeyCode.D) && !Physics.Raycast(transform.position, Vector3.right, 1f) && _isDead == false){
             _anime.SetBool("Left_Dodge", true);
             Invoke("DodgeToFalse", 0.1f);
             _poss++;
@@ -40,14 +43,14 @@ public class DogeComponent : MonoBehaviour
 
         }
 
-        if(Input.GetKeyDown(KeyCode.A) && !Physics.Raycast(transform.position, Vector3.left, 1f)){
+        if(Input.GetKeyDown(KeyCode.A) && !Physics.Raycast(transform.position, Vector3.left, 1f) && _isDead == false){
             _anime.SetBool("Left_Dodge", true);
             Invoke("DodgeToFalse", 0.1f);
             _poss--;
             transform.position = new Vector3(_poss,transform.position.y, transform.position.z);
         }
 
-        if((Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W)) && _isGrounded){ //@jump
+        if((Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W)) && _isGrounded && _isDead == false){ //@jump
             _anime.SetBool("isJumping", true);
             _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, CalculateJumpVelocity(), _rb.linearVelocity.z);
            }
@@ -99,7 +102,16 @@ public class DogeComponent : MonoBehaviour
 
     void Dead(){ 
         _anime.SetBool("isDead", true);
-        Time.timeScale = 0;
+        _isDead = true;
+    }
+
+    /*----------------------------------------------------------------------------*/
+
+    void OnStart(){
+        _poss = 0;
+        _anime.SetBool("isDead", false);
+        _isDead = false;
+        transform.position = new Vector3(0,-0.4f,-3.58f);
     }
 
     /*----------------------------------------------------------------------------*/
@@ -107,11 +119,6 @@ public class DogeComponent : MonoBehaviour
     //функция - спавн приследователя
 
     
-    /*----------------------------------------------------------------------------*/
-    void OnStart(){
-        _poss = 0;
-        _anime.SetBool("isDead", false);
-        transform.position = new Vector3(0,-0.4f,-3.58f);
-    }
+    
 
 }
