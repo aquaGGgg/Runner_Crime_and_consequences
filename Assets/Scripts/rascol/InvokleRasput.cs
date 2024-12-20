@@ -11,7 +11,8 @@ public class InvokleRasput : MonoBehaviour
     void Start()
     {
         DeadMenu.OnStart += OnHaras;
-        DogeComponent.OnHarassment += OnHaras;
+        DogeComponent.OnHarassment += OnHaras;        
+        Trigger_Collision_Controller.OnDeath +=OnHaras;
     }
 
     void Update(){
@@ -19,14 +20,13 @@ public class InvokleRasput : MonoBehaviour
         
         if(isHaras)
         Haras();
-
         if(!isHaras)
         transform.position = babka.transform.position - Vector3.forward*3;
     }
 
     void OnHaras(){
         isHaras = true;
-        transform.position = Vector3.Lerp(transform.position, babka.transform.position - Vector3.forward, 1);
+        Haras();
         if(isHaras)
         Invoke("StopHaras", 5);
     }
@@ -39,9 +39,6 @@ public class InvokleRasput : MonoBehaviour
 
     void Haras(){
         StartCoroutine(SmoothMoveCoroutine());
-        //transform.position = babka.transform.position - Vector3.forward;
-        //if(transform.position.y <=-0.4)
-        //timer =0;
     }
 
 

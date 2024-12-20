@@ -35,6 +35,7 @@ public class AnimeMenedgerRaskol : MonoBehaviour
     }  
 
     void Fatality(){
+        transform.position += Vector3.forward*3;
         _anime.SetBool("IsKill",true);
     }
 
