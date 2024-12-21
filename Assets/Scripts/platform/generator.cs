@@ -13,7 +13,7 @@ public class Generator : MonoBehaviour
     }
 
     private void generate(){
-        int number   =  Random.Range(0, 4);  // выбор префаба
+        int number   =  Random.Range(0, 9);  // выбор префаба
         Instantiate(paterns[number],_currentPosition, Quaternion.identity);
         
     }
